@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { Attendee } from '../../../models';
 
 @Component({
   selector: 'app-add-attendee',
   templateUrl: './add-attendee.component.html',
-  styleUrls: ['./add-attendee.component.css']
+  styleUrls: ['./add-attendee.component.scss'],
 })
-export class AddAttendeeComponent implements OnInit {
+export class AddAttendeeComponent {
+  addAttendeeForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+  });
 
-  constructor() { }
-
-  ngOnInit(): void {
+  submit() {
+    const attendee = {
+      name: this.addAttendeeForm.value.name,
+      attending: true,
+      guests: 0,
+    };
+    console.log('TCL: AddAttendeeComponent -> submit -> attendee', attendee);
   }
-
 }
