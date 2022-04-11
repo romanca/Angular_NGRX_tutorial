@@ -6,7 +6,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/containers/home/home.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { StoreModule } from '@ngrx/store';
+
 import { InMemoryDataService } from './app.db';
+import { reducer } from './state/spinner/spinner.reducer';
+
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
@@ -21,7 +25,10 @@ import { InMemoryDataService } from './app.db';
       },
     ]),
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 100 }),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      delay: 1000,
+    }),
+    StoreModule.forRoot({ spinner: reducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],
