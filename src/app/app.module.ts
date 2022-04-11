@@ -14,7 +14,6 @@ import { HomeComponent } from './home/containers/home/home.component';
       { path: 'home', component: HomeComponent },
       {
         path: 'event',
-        //loadChildren: './event/event.module#EventModule',
         loadChildren: () =>
           import('./event/event.module').then((m) => m.EventModule),
       },
